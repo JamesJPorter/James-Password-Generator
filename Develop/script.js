@@ -4,6 +4,7 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   // var password = generatePassword()
+  selectPwdLength();
 }
 var passwordText = document.querySelector("#password");
 
@@ -38,4 +39,17 @@ var selectPwdLowerCase = function () {
   window.alert("User select lowercase: " + pwdLowerCase);
 }
 
-selectPwdLowerCase();
+var selectPwdNumeric = function () {
+  pwdNumeric = window.prompt("Would you like numbers in your password? yes or no")
+  if (pwdNumeric == "yes" || pwdNumeric == "no")
+  console.log("User select numeric: " + pwdNumeric)
+  window.alert("User select numeric: " + pwdNumeric);
+}
+
+// selectPwdLength();
+
+// selectPwdUpperCase();
+
+// selectPwdLowerCase();
+
+// selectPwdNumeric();
