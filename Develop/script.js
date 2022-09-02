@@ -2,113 +2,111 @@
 var generateBtn = document.querySelector("#generate");
 
 // define user criteria variables 
-var lowerCase = "abcdefghijklmnopqrstuvwxyz".split(""); 
-console.log(lowerCase);
-console.log(lowerCase.length);
+var lowerCase = "abcdefghijklmnopqrstuvwxyz"; 
+// console.log(lowerCase);
+// console.log(lowerCase.length);
 
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-console.log(upperCase);
-console.log(upperCase.length);
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// console.log(upperCase);
+// console.log(upperCase.length);
 
-var specialCharacters = "-_=+:;'/?><*&^%$#@!()".split("");
-console.log(specialCharacters);
-console.log(specialCharacters.length);
+var specialCharacters = "-_=+:;'/?><*&^%$#@!()";
+// console.log(specialCharacters);
+// console.log(specialCharacters.length);
 
-var numeric = "1234567890".split("");
-console.log(numeric);
-console.log(numeric.length);
+var numeric = "1234567890";
+// console.log(numeric);
+// console.log(numeric.length);
+
+var characterBank = "";
+
+let pwdLength;
+
+var password = "";
 
 
 // Function to select password length
-var selectPwdLength = function() {
+function selectPwdLength() {
   pwdLength = window.prompt("What length would you like your password from 8 - 128 characters?");
   if (pwdLength > 7 && pwdLength < 128) {
     console.log("User select Length: " + pwdLength)
     window.alert("User select Length: " + pwdLength)
   } else selectPwdLength();
+  console.log(pwdLength);
 }
 // Function to select uppercase letters presence in password
-var selectPwdUpperCase = function() {
-  pwdUpperCase = window.prompt("Would you like your password ot be have uppercase letters? Yes or no")
-  if (pwdUpperCase == "yes" || pwdUpperCase == "no") {
-    console.log("User select Uppercase: " + pwdUpperCase)
-    window.alert("User select Uppercase: " + pwdUpperCase);
-  } else (selectPwdUpperCase())
+function selectPwdUpperCase() {
+  window.confirm("Would you like your password ot be have uppercase letters?");
 }
 
 // function to select lowercase letters presence in passowrd.
-var selectPwdLowerCase = function () {
-  pwdLowerCase = window.prompt("Would you like your password to have lowercase letters? yes or no")
-  if (pwdLowerCase == "yes" || pwdLowerCase == "no")
-  console.log("User select lowercase: " + pwdLowerCase)
-  window.alert("User select lowercase: " + pwdLowerCase);
+function selectPwdLowerCase() {
+  window.confirm("Would you like your password to have lowercase letters?");
 }
 
 // function to select numbers presence in password
-var selectPwdNumeric = function () {
-  pwdNumeric = window.prompt("Would you like numbers in your password? yes or no")
-  if (pwdNumeric == "yes" || pwdNumeric == "no")
-  console.log("User select numeric: " + pwdNumeric)
-  window.alert("User select numeric: " + pwdNumeric);
+function selectPwdNumeric() {
+  window.confirm("Would you like numbers in your password?");
+  console.log()
 }
 
 // function to determine presence of special characters in password
-var selectSpecialCharacters = function() {
-  pwdSpecialCharacters = window.prompt ("Would you like special characters in your password? yes or no")
-  if (pwdSpecialCharacters == "yes" || pwdSpecialCharacters == "no")
-  console.log("User select special characters: " + pwdSpecialCharacters)
-  window.alert("User select special characters: " + pwdSpecialCharacters);
+function selectSpecialCharacters() {
+  pwdSpecialCharacters = window.confirm ("Would you like special characters in your password?");
 }
 
-// function to select a random uppercase letter
-var randomUpper = function (){
-  var randomUpperCaseidx = Math.floor(Math.random() * upperCase.length);
-  console.log(randomUpperCaseidx);
-  console.log(upperCase[randomUpperCaseidx]);
-  return upperCase[randomUpperCaseidx];
+function validate() {
+  if (!selectPwdLowerCase && !selectPwdUpperCase && !selectSpecialCharacters && !selectPwdNumeric){
+    window.prompt("you must choose one criteria");
+    getPasswordParams();
+  }
+  else {includeCriteria()}
 }
-var testUpper = randomUpper();
 
-// function to select random lowercase letter
-var randomLower = function (){
-  var randomLowerCaseidx = Math.floor(Math.random() * lowerCase.length);
-  console.log(randomLowerCaseidx);
-  console.log(lowerCase[randomLowerCaseidx]);
-  return lowerCase[randomLowerCaseidx];
+function includeCriteria() {
+  if (selectPwdLowerCase){ 
+    console.log("inside function");
+  characterBank += lowerCase;
+  console.log(characterBank);
+  } 
+  if (selectPwdUpperCase){
+    characterBank += upperCase;
+  }
+  if (selectSpecialCharacters){
+    characterBank += specialCharacters;
+  }
+  if (selectPwdNumeric){
+    characterBank += numeric;
+  }
+  console.log(characterBank);
+  createPassword();
 }
-var testLower = randomLower();
 
-// function to select random special character 
-var randomLower = function (){
-  var randomSpecialCharidx = Math.floor(Math.random() * specialCharacters.length);
-  console.log(randomSpecialCharidx);
-  console.log(specialCharacters[randomSpecialCharidx]);
-  return specialCharacters[randomSpecialCharidx];
+function createPassword() {
+  for (let i = 0; i < pwdLength; i++){
+    password += characterBank.charAt(Math.floor(Math.random() * characterBank.length)); 
+  }
+  console.log(password);
+  passwordText.innerHTML = password;
 }
-var testspecial = randomLower();
-
-// function to select random number
-var randomNumber = function (){
-  var randomNumberidx = Math.floor(Math.random() * numeric.length);
-  console.log(randomNumberidx);
-  console.log(numeric[randomNumberidx]);
-  return numeric[randomNumberidx];
-}
-var testnumber = randomNumber();
-
 
 // Write password to the #password input
-function writePassword() {
+function getPasswordParams() {
   selectPwdLength();
   selectPwdUpperCase();
   selectPwdLowerCase();
   selectPwdNumeric();
   selectSpecialCharacters();
+  validate();
 }
 var passwordText = document.querySelector("#password");
 
-passwordText.value = password;
-
-
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", getPasswordParams);
+
+
+// strings of all characters - done
+// ask user which criteria they want - done
+// create concatenated string of all selected criteria
+// run math.random on concatenated string corresponding to user requested pwd length
+// push each loop into "password" variable
