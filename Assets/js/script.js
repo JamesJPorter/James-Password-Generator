@@ -53,18 +53,15 @@ function selectPwdNumeric() {
 // function to determine presence of special characters in password
 function selectSpecialCharacters() {
   pwdSpecialCharacters = window.confirm ("Would you like special characters in your password?");
-  validate();
 }
 
-
-
-function validate() {
-  if (selectPwdLowerCase !== true && selectPwdUpperCase !== true && selectSpecialCharacters !== true && selectPwdNumeric !== true){
-    window.confirm("you must choose one criteria");
-    getPasswordParams();
-  }
-  else {includeCriteria()}
-}
+// function validate() {
+//   if (selectPwdLowerCase !== true && selectPwdUpperCase !== true && selectSpecialCharacters !== true && selectPwdNumeric !== true){
+//     window.confirm("you must choose one criteria");
+//     getPasswordParams();
+//   }
+//   else {includeCriteria()}
+// }
 
 function includeCriteria() {
   if (selectPwdLowerCase){ 
@@ -100,6 +97,7 @@ function getPasswordParams() {
   selectPwdLowerCase();
   selectPwdNumeric();
   selectSpecialCharacters();
+  includeCriteria();
 }
 var passwordText = document.querySelector("#password");
 
