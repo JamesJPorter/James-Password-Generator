@@ -47,7 +47,6 @@ function selectPwdLowerCase() {
 // function to select numbers presence in password
 function selectPwdNumeric() {
   window.confirm("Would you like numbers in your password?");
-  console.log()
 }
 
 // function to determine presence of special characters in password
@@ -56,8 +55,8 @@ function selectSpecialCharacters() {
 }
 
 function validate() {
-  if (!selectPwdLowerCase && !selectPwdUpperCase && !selectSpecialCharacters && !selectPwdNumeric){
-    window.prompt("you must choose one criteria");
+  if (selectPwdLowerCase !== true && selectPwdUpperCase !== true && selectSpecialCharacters !== true && selectPwdNumeric !== true){
+    window.confirm("you must choose one criteria");
     getPasswordParams();
   }
   else {includeCriteria()}
