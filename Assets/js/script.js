@@ -34,6 +34,7 @@ function selectPwdLength() {
   } else selectPwdLength();
   console.log(pwdLength);
 }
+
 // Function to select uppercase letters presence in password
 function selectPwdUpperCase() {
   window.confirm("Would you like your password ot be have uppercase letters?");
@@ -52,7 +53,10 @@ function selectPwdNumeric() {
 // function to determine presence of special characters in password
 function selectSpecialCharacters() {
   pwdSpecialCharacters = window.confirm ("Would you like special characters in your password?");
+  validate();
 }
+
+
 
 function validate() {
   if (selectPwdLowerCase !== true && selectPwdUpperCase !== true && selectSpecialCharacters !== true && selectPwdNumeric !== true){
@@ -96,7 +100,6 @@ function getPasswordParams() {
   selectPwdLowerCase();
   selectPwdNumeric();
   selectSpecialCharacters();
-  validate();
 }
 var passwordText = document.querySelector("#password");
 
