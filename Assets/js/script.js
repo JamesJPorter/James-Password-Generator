@@ -1,22 +1,14 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// define user criteria variables 
-var lowerCase = "abcdefghijklmnopqrstuvwxyz"; 
-// console.log(lowerCase);
-// console.log(lowerCase.length);
+// define user criteria variables
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-// console.log(upperCase);
-// console.log(upperCase.length);
 
 var specialCharacters = "-_=+:;'/?><*&^%$#@!()";
-// console.log(specialCharacters);
-// console.log(specialCharacters.length);
 
 var numeric = "1234567890";
-// console.log(numeric);
-// console.log(numeric.length);
 
 var characterBank = "";
 
@@ -24,15 +16,14 @@ let pwdLength;
 
 var password = "";
 
-
 // Function to select password length
 function selectPwdLength() {
-  pwdLength = window.prompt("What length would you like your password from 8 - 128 characters?");
+  pwdLength = window.prompt(
+    "What length would you like your password from 8 - 128 characters?"
+  );
   if (pwdLength > 7 && pwdLength < 128) {
-    console.log("User select Length: " + pwdLength)
-    window.alert("User select Length: " + pwdLength)
+    window.alert("User select Length: " + pwdLength);
   } else selectPwdLength();
-  console.log(pwdLength);
 }
 
 // Function to select uppercase letters presence in password
@@ -52,30 +43,20 @@ function selectPwdNumeric() {
 
 // function to determine presence of special characters in password
 function selectSpecialCharacters() {
-  pwdSpecialCharacters = window.confirm ("Would you like special characters in your password?");
+  pwdSpecialCharacters = window.confirm("Would you like special characters in your password?");
 }
 
-// function validate() {
-//   if (selectPwdLowerCase !== true && selectPwdUpperCase !== true && selectSpecialCharacters !== true && selectPwdNumeric !== true){
-//     window.confirm("you must choose one criteria");
-//     getPasswordParams();
-//   }
-//   else {includeCriteria()}
-// }
-
 function includeCriteria() {
-  if (selectPwdLowerCase){ 
-    console.log("inside function");
-  characterBank += lowerCase;
-  console.log(characterBank);
-  } 
-  if (selectPwdUpperCase){
+  if (selectPwdLowerCase) {
+    characterBank += lowerCase;
+  }
+  if (selectPwdUpperCase) {
     characterBank += upperCase;
   }
-  if (selectSpecialCharacters){
+  if (selectSpecialCharacters) {
     characterBank += specialCharacters;
   }
-  if (selectPwdNumeric){
+  if (selectPwdNumeric) {
     characterBank += numeric;
   }
   console.log(characterBank);
@@ -83,8 +64,10 @@ function includeCriteria() {
 }
 
 function createPassword() {
-  for (let i = 0; i < pwdLength; i++){
-    password += characterBank.charAt(Math.floor(Math.random() * characterBank.length)); 
+  for (let i = 0; i < pwdLength; i++) {
+    password += characterBank.charAt(
+      Math.floor(Math.random() * characterBank.length)
+    );
   }
   console.log(password);
   passwordText.innerHTML = password;
@@ -103,7 +86,6 @@ var passwordText = document.querySelector("#password");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", getPasswordParams);
-
 
 // strings of all characters - done
 // ask user which criteria they want - done
